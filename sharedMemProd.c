@@ -24,7 +24,6 @@
 #include <errno.h>
 
 int main(){
-	int i;
 	int reader_end, empty, full; //Semaphore ID's
 	int shmid;
 	char * buffer; //addr of shared memory for 1 mark
@@ -49,8 +48,6 @@ int main(){
 	int input =1;
 	char word[100];
 	while(count < MAXMARKS){
-	//for(int i=0;i< 10;i++){
-		//word = malloc(sizeof(char*));
 		fprintf(stdout, "Please enter a mark, 'end' to exit\n");
 		fscanf(stdin, "%s", word);
 
@@ -60,7 +57,6 @@ int main(){
 		//base case
 		if((strcmp(input, "end"))!=0){
 			p(empty);
-			//buffer = (input);
 			strcpy(buffer, input);
 			//signal that buffer is full for this shared mem key 
 			v(full);
@@ -68,9 +64,7 @@ int main(){
 		}
 		else if((strcmp(input, "end"))==0){
 			//tell consumer ended
-			//v0(reader_end);
 			p(empty);
-			//buffer = (input);
 			strcpy(buffer, input);
 			//signal that buffer is full for this shared mem key 
 			v(full);

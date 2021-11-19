@@ -25,7 +25,6 @@
 #define MAXMARKS 100
 
 int main(){
-	int fd, i;
 	//semaphores
 	int reader_end, empty, full;
 	int shmid;
@@ -50,7 +49,6 @@ int main(){
 	int results[MAXMARKS];
 	int count =0;
 	char word[100];
-	int cas = 1;
 	while(1){
 		//base case
 		if(strcmp(word, "end")==0){
