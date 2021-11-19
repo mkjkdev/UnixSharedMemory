@@ -10,7 +10,7 @@
 #include <sys/shm.h>
 #include <string.h>
 
-#include "pv.h"
+#include "../headers/pv.h"
 	
 #define BUF_FULL_KEY	0x00b0001	
 #define BUF_EMPTY_KEY	0x00b0002
