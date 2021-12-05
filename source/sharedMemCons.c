@@ -12,6 +12,7 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "../headers/pv.h"
 	
@@ -48,27 +49,33 @@ int main(){
 
 	int results[MAXMARKS];
 	int count =0;
-	char word[100];
+	char * word;
 	while(1){
 		//base case
 		if(strcmp(word, "end")==0){
 			break;
 		}
+		word = malloc(strlen(buffer) +1);
 		//wait until buffer full
 		p(full);
 		strcpy(word, buffer);
-		results[count] = atoi(word);
+		//if(isdigit(word) !=0){
+			results[count] = atoi(word);
+			count++;
+		//}
 		v(empty);
 		fprintf(stdout, "The item is: %s\n", word);
-		count++;
+		free(word);
 	}
 
 	//display average mark on the screen
 	if(count > 0){
 		double average;
 		double total;
-		for(int i=0;i<=count;i++){
+
+		for(int i=0;i<count;i++){
 			total += results[i];
+			fprintf(stdout, "%d\n", results[i]);
 		}
 		average = (total / count);
 		fprintf(stdout, "average mark: %f\n", average);
